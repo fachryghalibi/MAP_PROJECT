@@ -141,15 +141,11 @@ const literacyPlaces = [
     }
 ];
 
-// Load map image with markers
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize map markers
     const map = document.getElementById('map');
     
-    // Create map background
     map.style.backgroundImage = "url('https://source.unsplash.com/random/1200x600/?bandung,map')";
     
-    // Add markers to map
     literacyPlaces.forEach(place => {
         const marker = document.createElement('div');
         marker.className = 'map-marker';
@@ -157,12 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
         marker.style.left = `${place.positionX}%`;
         marker.style.top = `${place.positionY}%`;
         
-        // Add tooltip on hover
         marker.setAttribute('title', place.name);
         
-        // Add click event
         marker.addEventListener('click', () => {
-            // Scroll to the place in the list
             const placeElement = document.getElementById(`place-${place.id}`);
             if (placeElement) {
                 placeElement.scrollIntoView({ behavior: 'smooth' });
@@ -176,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
         map.appendChild(marker);
     });
     
-    // Populate place list
     const placeGrid = document.querySelector('.place-grid');
     
     literacyPlaces.forEach(place => {
@@ -184,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         placeCard.className = 'place-card';
         placeCard.id = `place-${place.id}`;
         
-        // Random image for each place
         const imageIndex = Math.floor(Math.random() * 10) + 1;
         
         placeCard.innerHTML = `
@@ -198,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
         placeGrid.appendChild(placeCard);
     });
     
-    // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -215,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Fixed header on scroll
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
@@ -225,7 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Animation on scroll
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.place-card, .about-content, .map-container');
         
@@ -241,11 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     window.addEventListener('scroll', animateOnScroll);
-    // Initial check
     animateOnScroll();
 });
 
-// Function to highlight place when clicked on map
 function highlightPlace(id) {
     const placeElement = document.getElementById(`place-${id}`);
     if (placeElement) {
@@ -257,7 +243,6 @@ function highlightPlace(id) {
     }
 }
 
-// Mobile menu toggle
 function toggleMobileMenu() {
     const nav = document.querySelector('nav ul');
     nav.classList.toggle('active');
